@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">fitness-app</string>
+    <string name="title_activity_main">fitness-app</string>
+    <string name="package_name">malaimil.fitness</string>
+    <string name="custom_url_scheme">malaimil.fitness</string>
+</resources>

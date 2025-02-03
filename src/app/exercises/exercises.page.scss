@@ -1,0 +1,371 @@
+ion-content {
+  overflow-y: auto; /* Enable vertical scrolling */
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --padding-top: 16px;
+  --padding-bottom: 16px;
+}
+
+:host {
+  --ion-background-color: #FAFAFA;
+  --ion-color-primary: #FF5722;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-secondary: #FFE0B2;
+}
+
+ion-header {
+  ion-toolbar {
+    --background: var(--ion-color-primary);
+    --color: var(--ion-color-primary-contrast);
+  }
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin-bottom: 20px;
+  padding: 20px;
+
+  h2 {
+    color: #FF5722;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 16px;
+  }
+}
+
+.summary-card {
+  background: linear-gradient(135deg, var(--ion-color-primary), var(--ion-color-secondary));
+  color: var(--ion-color-primary-contrast);
+
+  h2 {
+    color: var(--ion-color-primary-contrast);
+  }
+
+  .summary-stats {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+
+    .stat {
+      ion-icon {
+        font-size: 24px;
+        margin-bottom: 8px;
+      }
+
+      h3 {
+        font-size: 28px;
+        font-weight: bold;
+        margin: 0;
+      }
+
+      p {
+        font-size: 14px;
+        margin: 4px 0 0;
+        opacity: 0.9;
+      }
+    }
+  }
+}
+
+.filter-card {
+  .date-range-picker {
+    ion-item {
+      --background: var(--ion-color-secondary);
+      --border-color: transparent;
+      --border-radius: 10px;
+      --padding-start: 12px;
+      --padding-end: 12px;
+      margin-bottom: 12px;
+
+      ion-icon {
+        color: var(--ion-color-primary);
+        margin-right: 8px;
+      }
+
+      ion-label {
+        color: var(--ion-color-medium);
+      }
+
+      ion-text {
+        color: var(--ion-color-dark);
+      }
+    }
+  }
+
+  ion-item {
+    --background: var(--ion-color-secondary);
+    --border-color: transparent;
+    --border-radius: 10px;
+    --padding-start: 12px;
+    --padding-end: 12px;
+    margin-bottom: 16px;
+  }
+
+  .filter-button {
+    --background: var(--ion-color-primary) !important;
+    --background-activated: var(--ion-color-primary-shade) !important;
+    --background-focused: var(--ion-color-primary-shade) !important;
+    --color: var(--ion-color-primary-contrast) !important;
+    --border-radius: 10px !important;
+    --padding-top: 16px;
+    --padding-bottom: 16px;
+    --padding-start: 16px;
+    --padding-end: 16px;
+    margin-top: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    box-shadow: none;
+    width: 100%;
+    
+    &::part(native) {
+      border-radius: 10px !important;
+      background: var(--ion-color-primary) !important;
+    }
+
+    ion-icon {
+      margin-right: 8px;
+    }
+  }
+}
+
+ion-modal ion-datetime {
+  --background: var(--ion-color-light);
+  --background-rgb: var(--ion-color-light-rgb);
+  --text-color: var(--ion-color-dark);
+}
+
+ion-list {
+  background: transparent;
+
+  ion-item-sliding {
+    background: #ffffff;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    overflow: hidden;
+
+    ion-item {
+      --background: transparent;
+      --border-color: var(--ion-color-secondary);
+      --padding-start: 16px;
+      --padding-end: 16px;
+
+      h2 {
+        font-weight: bold;
+        color: var(--ion-color-primary);
+      }
+
+      p {
+        color: #757575;
+      }
+    }
+  }
+}
+
+.chart-card {
+  canvas {
+    margin-top: 16px;
+  }
+}
+
+// Modal styles
+ion-modal {
+  --background: #FFFFFF;
+
+  ion-header {
+    ion-toolbar {
+      --background: #FF5722; // Keeping the orange theme
+      --color: #FFFFFF;
+    }
+  }
+
+  ion-content {
+    --background: #FFFFFF;
+    --padding-start: 16px;
+    --padding-end: 16px;
+    --padding-top: 16px;
+    --padding-bottom: 16px;
+  }
+
+  ion-item {
+    --background: transparent;
+    --border-color: #dedede;
+    --border-width: 0 0 1px 0;
+    --padding-start: 0;
+    --inner-padding-end: 0;
+
+    ion-label {
+      color: #FF5722; // Orange color for labels
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    ion-input, ion-select {
+      --padding-start: 0;
+      font-size: 16px;
+      color: #333333;
+    }
+  }
+
+  .selected-exercise {
+    background-color: #333333;
+    color: #FFFFFF;
+    padding: 12px;
+    border-radius: 8px;
+    margin: 16px 0;
+
+    h2 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    p {
+      margin: 4px 0 0;
+      font-size: 14px;
+    }
+  }
+
+  ion-button {
+    --background: #FF5722;
+    --background-activated: #E64A19;
+    --background-focused: #E64A19;
+    --color: #FFFFFF;
+    --border-radius: 8px;
+    margin-top: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+}
+
+// Additional styles to match the image
+.modal-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #FFFFFF;
+}
+
+.close-button {
+  --color: #FFFFFF;
+  font-weight: normal;
+  text-transform: uppercase;
+}
+
+// Style for the input fields to match the image
+.custom-input ion-input,
+.custom-input ion-select {
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --padding-top: 12px;
+  --padding-bottom: 12px;
+}
+
+// Style for the dropdown arrow in select
+.custom-input ion-select::part(icon) {
+  color: #FF5722;
+  opacity: 1;
+  font-size: 20px;
+}
+
+.calendar-modal {
+  --width: 90%;
+  --height: auto;
+  --max-width: 350px;
+  --border-radius: 8px;
+  --box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+}
+
+.calendar-content {
+  padding: 16px;
+}
+
+.calendar-wrapper {
+  background: var(--ion-background-color);
+  border-radius: 8px;
+  overflow: hidden;
+  padding: 10px;
+}
+
+.calendar-wrapper ion-datetime {
+  --background: var(--ion-background-color);
+  --color: var(--ion-text-color);
+  border-radius: 8px;
+  width: 100%;
+  max-height: 80vh;
+}
+
+.calendar-modal::part(backdrop) {
+  background: rgba(0,0,0,0.6);
+}
+
+.category-selector {
+  --background: var(--ion-color-light);
+  --border-color: var(--ion-color-medium);
+  --border-radius: 10px;
+  --border-width: 1px;
+  --border-style: solid;
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --padding-top: 10px;
+  --padding-bottom: 10px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+
+  ion-label {
+    color: var(--ion-color-medium);
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+
+  .custom-select {
+    --placeholder-color: var(--ion-color-dark);
+    --placeholder-opacity: 1;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--ion-color-dark);
+    
+    &::part(icon) {
+      color: var(--ion-color-primary);
+      opacity: 1;
+    }
+  }
+}
+
+// Style for the popover interface
+ion-select-popover {
+  --width: 300px;
+  --max-height: 400px;
+  
+  ion-item {
+    --padding-start: 16px;
+    --padding-end: 16px;
+    --min-height: 48px;
+    
+    &:hover {
+      --background: var(--ion-color-light);
+    }
+  }
+}
+
+.search-result {
+  --background: #333;
+  --color: white;
+  margin-bottom: 10px;
+
+  h2 {
+    font-weight: bold;
+  }
+
+  p {
+    margin-top: 5px;
+  }
+}

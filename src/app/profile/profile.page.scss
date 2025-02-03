@@ -1,0 +1,188 @@
+:root {
+  --primary-color: #FF6B35;
+  --primary-color-dark: #FF5722;
+  --text-color: #333333;
+  --background-light: #FFFFFF;
+}
+
+ion-content.profile-content {
+  --background: #f4f5f8;
+  --padding-top: 16px;
+  --padding-start: 16px;
+  --padding-end: 16px;
+}
+
+.profile-content .header {
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-color-dark));
+  color: white;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 56px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+
+  h1 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .logout-button {
+    --color: white;
+    font-size: 28px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    padding: 8px;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+
+    ion-icon {
+      color: white;
+      margin-right: 0;
+    }
+  }
+}
+
+.profile-content .profile-card {
+  background: white;
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  margin-top: 76px;
+}
+
+.profile-content .profile-picture-container {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto 24px;
+}
+
+.profile-content .profile-picture {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--primary-color);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.profile-content .camera-button {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 44px;
+  height: 44px;
+  --border-radius: 50%;
+  --background: var(--primary-color);
+  --color: white;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-content .camera-button ion-icon {
+  font-size: 20px;
+  color: white;
+  margin: 0;
+}
+
+.profile-content .user-name {
+  text-align: center;
+  font-size: 28px;
+  font-weight: bold;
+  color: var(--text-color);
+  margin-bottom: 24px;
+}
+
+.profile-content ion-item.custom-item {
+  --background: var(--input-background);
+  --border-radius: 10px;
+  --padding-start: 15px;
+  --highlight-height: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 15px;
+}
+
+.profile-content ion-input,
+.profile-content ion-select {
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --padding-top: 12px;
+  --padding-bottom: 12px;
+  --background: white;
+  --color: var(--text-color);
+  font-weight: 500;
+  border-radius: 10px;
+  border: 1px solid #e0e0e0;
+  margin-top: 4px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+}
+
+.profile-content ion-select::part(icon) {
+  color: var(--primary-color);
+  opacity: 1;
+}
+
+.calorie-goal-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-color-dark));
+  border-radius: 16px;
+  color: white;
+  box-shadow: 0 4px 10px rgba(255, 107, 53, 0.3);
+  margin-top: 24px;
+}
+
+.calorie-goal-label {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.calorie-goal-label ion-icon {
+  margin-right: 12px;
+  font-size: 24px;
+}
+
+.calorie-goal-value {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.profile-content .update-button {
+  margin-top: 36px;
+  --background: var(--primary-color);
+  --color: white;
+  font-weight: bold;
+  --border-radius: 25px;
+  height: 48px;
+  font-size: 18px;
+}
+
+.profile-content ion-item ion-icon {
+  font-size: 24px;
+  color: var(--primary-color);
+  margin-right: 12px;
+}
+
+ion-footer {
+  background: transparent;
+  box-shadow: none;
+}

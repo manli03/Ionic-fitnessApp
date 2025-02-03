@@ -1,0 +1,36 @@
+<ion-content class="ion-padding">
+  <div class="signup-container">
+    <h1>Create Account</h1>
+    <p>Sign up to get started</p>
+    
+    <form [formGroup]="signUpForm" (ngSubmit)="signUp()">
+      <ion-item class="custom-item">
+        <ion-input type="text" placeholder="Username" formControlName="username" required></ion-input>
+      </ion-item>
+
+      <ion-item class="custom-item">
+        <ion-input type="email" placeholder="Email" formControlName="email" required></ion-input>
+      </ion-item>
+
+      <ion-item class="custom-item">
+        <ion-input type="password" placeholder="Password" formControlName="password" required></ion-input>
+      </ion-item>
+
+      <ion-item class="custom-item">
+        <ion-select interface="alert" placeholder="Security Question" formControlName="securityQuestion" required>
+          <ion-select-option *ngFor="let question of securityQuestions" [value]="question">{{ question }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item class="custom-item">
+        <ion-input type="text" placeholder="Security Answer" formControlName="securityAnswer" required></ion-input>
+      </ion-item>
+
+      <ion-button type="submit" expand="block" class="signup-button">SIGN UP</ion-button>
+    </form>
+
+    <ion-button expand="block" fill="clear" class="signin-button" (click)="signIn()">SIGN IN</ion-button>
+  </div>
+
+  <ion-toast [isOpen]="showToast" [message]="toastMessage" [color]="toastColor" duration="2000"></ion-toast>
+</ion-content>

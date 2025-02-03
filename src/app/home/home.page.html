@@ -1,0 +1,51 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Dashboard</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <!-- Daily Calorie Summary -->
+  <div class="dashboard-card summary-card">
+    <h2>Daily Calorie Summary</h2>
+    <div class="summary-content">
+      <div class="summary-item">
+        <div class="info">
+          <span>Calories Burned</span>
+          <strong class="value">{{ caloriesBurned }}</strong>
+        </div>
+        <ion-icon name="flame-outline"></ion-icon>
+      </div>
+      <div class="summary-item">
+        <div class="info">
+          <span>Calories Consumed</span>
+          <strong class="value">{{ caloriesConsumed.toFixed(2) }}</strong>
+        </div>
+        <ion-icon name="nutrition-outline"></ion-icon>
+      </div>
+      <div class="summary-item">
+        <div class="info">
+          <span>Remaining Calories</span>
+          <strong class="value">{{ remainingCalories.toFixed(2) }}</strong>
+        </div>
+        <ion-icon name="calculator-outline"></ion-icon>
+      </div>
+    </div>
+  </div>
+
+  <!-- Progress Visualization -->
+  <div class="dashboard-card">
+    <h2>Progress</h2>
+    <div class="chart-container">
+      <canvas id="progressChart"></canvas>
+    </div>
+  </div>
+
+  <!-- Weekly Progress Chart -->
+  <div class="dashboard-card">
+    <h2>Weekly Progress</h2>
+    <div class="chart-container">
+      <canvas id="weeklyChart"></canvas>
+    </div>
+  </div>
+</ion-content>

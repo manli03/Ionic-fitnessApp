@@ -1,0 +1,147 @@
+/* src/global.scss */
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
+
+/* Optional CSS utils that can be commented out */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+/* Define color variables */
+:root {
+  --primary-color: #FF5722; /* Orange */
+  --primary-color-dark: #E64A19; /* Darker shade of Orange */
+  --accent-color: #FFCCBC; /* Light Orange */
+  --background-color: #FFFFFF; /* White */
+  --text-color: #333333; /* Dark Grey */
+}
+
+/* Apply the color scheme */
+body {
+  font-family: Arial, sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+}
+
+ion-app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+ion-content {
+  --background: var(--background-color);
+  flex: 1;
+  overflow-y: auto;
+  position: relative;
+}
+
+ion-header {
+  --background: var(--primary-color);
+  --color: white;
+  z-index: 3; /* Ensure header is above content */
+}
+
+ion-title {
+  color: white;
+}
+
+ion-tabs {
+  flex-shrink: 0;
+  z-index: 2; /* Ensure tabs are above content */
+}
+
+ion-tab-bar {
+  --background: var(--background-color);
+  --color: var(--text-color);
+  border-top: 1px solid #ccc;
+}
+
+.scroll-content {
+  padding-bottom: 56px; /* Adjust based on your tab bar height */
+}
+
+ion-tab-button {
+  --color-selected: var(--primary-color);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+input, select, button, ion-input, ion-select, ion-button {
+  padding: 10px;
+  font-size: 16px;
+}
+
+#profile-picture {
+  max-width: 200px;
+  margin-bottom: 10px;
+}
+
+/* Additional styles for the dashboard */
+.dashboard-card {
+  background-color: white;
+  padding: 20px;
+  border-radius: 15px;
+  margin: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-card h2 {
+  color: var(--primary-color);
+}
+
+.dashboard-card p {
+  margin: 5px 0;
+}
+
+.profile-picture-container {
+  padding: 16px;
+}
+
+.dashboard-card h3 {
+  color: var(--primary-color);
+}
+
+/* Calendar Modal Styles */
+ion-modal {
+  --backdrop-opacity: 0.6;
+  --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+ion-modal.calendar-modal {
+  --width: 90%;
+  --height: auto;
+  --max-width: 350px;
+  --border-radius: 8px;
+}
+
+ion-modal.calendar-modal::part(content) {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+ion-modal::part(backdrop) {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+ion-modal ion-datetime {
+  --background: #ffffff;
+  border-radius: 8px;
+}

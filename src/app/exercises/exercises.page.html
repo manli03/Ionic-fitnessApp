@@ -1,0 +1,194 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary">
+    <ion-title>Exercises</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="openModal(false)">
+        <ion-icon name="add-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <!-- Summary Card -->
+  <div class="card summary-card">
+    <h2>Weekly Summary</h2>
+    <div class="summary-stats">
+      <div class="stat">
+        <ion-icon name="fitness-outline"></ion-icon>
+        <h3>{{ totalExercises }}</h3>
+        <p>Exercises</p>
+      </div>
+      <div class="stat">
+        <ion-icon name="time-outline"></ion-icon>
+        <h3>{{ totalDuration }}m</h3>
+        <p>Duration</p>
+      </div>
+      <div class="stat">
+        <ion-icon name="flame-outline"></ion-icon>
+        <h3>{{ totalCalories }}</h3>
+        <p>Calories</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filter Section -->
+  <div class="card filter-card">
+    <h2>Filter Exercises</h2>
+    <div class="date-range-picker">
+      <ion-item button (click)="openStartDatePicker()">
+        <ion-icon name="calendar-outline" slot="start"></ion-icon>
+        <ion-label>Start Date</ion-label>
+        <ion-text slot="end">{{ filterStartDate | date:'mediumDate' }}</ion-text>
+      </ion-item>
+      <ion-item button (click)="openEndDatePicker()">
+        <ion-icon name="calendar-outline" slot="start"></ion-icon>
+        <ion-label>End Date</ion-label>
+        <ion-text slot="end">{{ filterEndDate | date:'mediumDate' }}</ion-text>
+      </ion-item>
+    </div>
+    <ion-item class="category-selector">
+      <ion-label position="stacked">Category</ion-label>
+      <ion-select [(ngModel)]="filterCategory" interface="popover" class="custom-select">
+        <ion-select-option value="all">All</ion-select-option>
+        <ion-select-option value="cardio">Cardio</ion-select-option>
+        <ion-select-option value="strength">Strength</ion-select-option>
+        <ion-select-option value="flexibility">Flexibility</ion-select-option>
+        <ion-select-option value="balance">Balance</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-button expand="block" (click)="applyFilter()" class="filter-button">
+      <ion-icon name="funnel-outline" slot="start"></ion-icon>
+      Apply Filter
+    </ion-button>
+  </div>
+
+  <!-- Pop-up Calendars -->
+  <ion-popover [isOpen]="isStartDatePickerOpen" (didDismiss)="isStartDatePickerOpen = false">
+    <ng-template>
+      <ion-datetime
+        presentation="date"
+        [(ngModel)]="filterStartDate"
+        (ionChange)="onDateChange('start')"
+        [showDefaultButtons]="true"
+      ></ion-datetime>
+    </ng-template>
+  </ion-popover>
+
+  <ion-popover [isOpen]="isEndDatePickerOpen" (didDismiss)="isEndDatePickerOpen = false">
+    <ng-template>
+      <ion-datetime
+        presentation="date"
+        [(ngModel)]="filterEndDate"
+        (ionChange)="onDateChange('end')"
+        [showDefaultButtons]="true"
+      ></ion-datetime>
+    </ng-template>
+  </ion-popover>
+
+  <!-- Exercise List -->
+  <div class="card">
+    <h2>Exercise List</h2>
+    <ion-list *ngIf="exercises.length > 0">
+      <ion-item-sliding *ngFor="let exercise of exercises">
+        <ion-item>
+          <ion-label>
+            <h2>{{ exercise.name }}</h2>
+            <p>{{ exercise.category }} | {{ exercise.duration }} min | {{ exercise.caloriesBurned }} cal</p>
+            <p>{{ exercise.date | date:'medium' : '+0800' }}</p> <!-- Updated date pipe with timezone -->
+          </ion-label>
+        </ion-item>
+        <ion-item-options side="end">
+          <ion-item-option (click)="editExercise(exercise)" color="primary">
+            <ion-icon slot="icon-only" name="create"></ion-icon>
+          </ion-item-option>
+          <ion-item-option (click)="deleteExercise(exercise.id)" color="danger">
+            <ion-icon slot="icon-only" name="trash"></ion-icon>
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+    <ion-text *ngIf="exercises.length === 0">No exercises found.</ion-text>
+  </div>
+
+  <!-- Progress Visualization -->
+  <div class="card chart-card">
+    <h2>Weekly Exercise Progress</h2>
+    <canvas id="exerciseChart"></canvas>
+  </div>
+
+  <!-- Add/Edit Exercise Modal -->
+  <ion-modal [isOpen]="isOpenModal" (didDismiss)="closeModal()">
+    <ng-template>
+      <ion-header class="ion-no-border">
+        <ion-toolbar>
+          <ion-title>{{ isEditing ? 'Edit' : 'Add' }} Exercise</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="closeModal()">CLOSE</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <form #exerciseForm="ngForm" (ngSubmit)="addOrUpdateExercise()">
+          <ion-item>
+            <ion-label position="stacked">Exercise Type</ion-label>
+            <ion-select [(ngModel)]="selectedExerciseType" name="exerciseType" (ionChange)="onExerciseTypeSelect($event)">
+              <ion-select-option value="cardio">Cardio</ion-select-option>
+              <ion-select-option value="strength">Strength Training</ion-select-option>
+              <ion-select-option value="flexibility">Flexibility</ion-select-option>
+              <ion-select-option value="balance">Balance & Stability</ion-select-option>
+              <ion-select-option value="custom">Custom</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item *ngIf="selectedExerciseType === 'custom'">
+            <ion-label position="stacked">Search Custom Exercise</ion-label>
+            <ion-input [(ngModel)]="customExerciseName" name="customExercise" (ionInput)="onCustomExerciseInput($event)"></ion-input>
+          </ion-item>
+
+          <ion-list *ngIf="nutritionixExercises.length > 0">
+            <ion-item *ngFor="let exercise of nutritionixExercises" (click)="selectNutritionixExercise(exercise)">
+              <ion-label>
+                <h2>{{ exercise.name }}</h2>
+                <p>{{ exercise.duration_min }} min | {{ exercise.nf_calories | number:'1.0-0' }} cal</p>
+              </ion-label>
+            </ion-item>
+          </ion-list>
+
+          <ion-item *ngIf="selectedExerciseType && selectedExerciseType !== 'custom'">
+            <ion-label position="stacked">Suggested Exercises</ion-label>
+            <ion-select [(ngModel)]="selectedSuggestedExercise" name="suggestedExercise" (ionChange)="onSuggestedExerciseSelect()">
+              <ion-select-option *ngFor="let exercise of suggestedExercises" [value]="exercise">
+                {{ exercise }}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <div *ngIf="selectedExerciseResult" class="selected-exercise" (click)="populateExerciseDetails()">
+            <h2>{{ selectedExerciseResult.name }}</h2>
+            <p>{{ selectedExerciseResult.duration }} min | {{ selectedExerciseResult.calories }} cal</p>
+          </div>
+
+          <ion-item>
+            <ion-label position="stacked">Exercise Name</ion-label>
+            <ion-input [(ngModel)]="newExercise.name" name="name" required></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Duration (minutes)</ion-label>
+            <ion-input type="number" [(ngModel)]="newExercise.duration" name="duration" required (ionChange)="onDurationChange()" (ionInput)="onDurationChange()"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Calories Burned</ion-label>
+            <ion-input type="number" [(ngModel)]="newExercise.caloriesBurned" name="caloriesBurned" required readonly></ion-input>
+          </ion-item>
+
+          <ion-button expand="block" type="submit" [disabled]="!exerciseForm.form.valid">
+            {{ isEditing ? 'UPDATE' : 'ADD' }} EXERCISE
+          </ion-button>
+        </form>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+</ion-content>

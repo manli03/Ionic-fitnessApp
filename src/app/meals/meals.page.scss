@@ -1,0 +1,403 @@
+ion-content {
+  --background: #f5f5f5;
+  --padding-top: 0;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #ff5722;
+  color: white;
+  padding: 16px;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.page-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0;
+  text-align: left;
+}
+
+ion-content {
+  --padding-top: 56px; /* Adjust this value to match the header height */
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin: 16px;
+
+  h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 16px;
+  }
+}
+
+.search-input {
+  display: flex;
+  align-items: center;
+  background-color: #f0f0f5;
+  border-radius: 25px;
+  padding: 4px 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+
+  &:focus-within {
+    box-shadow: 0 4px 10px rgba(255, 87, 34, 0.1);
+  }
+
+  ion-icon {
+    color: #888;
+    font-size: 20px;
+    margin-right: 12px;
+  }
+
+  ion-input {
+    --padding-start: 0;
+    --background: transparent;
+    --color: #333;
+    --placeholder-color: #888;
+    font-size: 16px;
+    flex: 1;
+  }
+}
+
+ion-button[expand="block"] {
+  --background: #ff5722;
+  --background-activated: #e64a19;
+  --border-radius: 25px;
+  --box-shadow: 0 4px 10px rgba(255, 87, 34, 0.3);
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-top: 12px;
+  height: 48px;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+}
+
+ion-input {
+  --background: #f0f0f5;
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --padding-top: 12px;
+  --padding-bottom: 12px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  --color: #333;
+}
+
+.log-meal-card ion-input {
+  --background: rgba(255, 255, 255, 0.2);
+  --color: white;
+  --placeholder-color: rgba(255, 255, 255, 0.7);
+}
+
+ion-button {
+  --background: #ff5722;
+  --background-activated: #e64a19;
+  --border-radius: 8px;
+  --box-shadow: none;
+  font-weight: 600;
+  text-transform: capitalize;
+  margin-top: 12px;
+  height: 48px;
+}
+
+.log-meal-card {
+  background: linear-gradient(135deg, #ff5722, #ff7043);
+
+  h2 {
+    color: white;
+  }
+
+  ion-input {
+    --background: rgba(255, 255, 255, 0.2);
+    --color: white;
+    --placeholder-color: rgba(255, 255, 255, 0.7);
+  }
+
+  ion-button {
+    --background: white;
+    --color: #ff5722;
+  }
+}
+
+.meal-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+
+  .meal-info {
+    flex-grow: 1;
+
+    h3 {
+      font-size: 18px;
+      font-weight: 600;
+      color: #ff5722;
+      margin-bottom: 12px;
+    }
+
+    .nutrient-container {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+
+      .nutrient-box {
+        display: flex;
+        gap: 8px;
+        width: 100%;
+      }
+
+      .nutrient {
+        display: flex;
+        align-items: center;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        padding: 8px 12px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        flex: 1;
+
+        ion-icon {
+          font-size: 20px;
+          color: #ff5722;
+          margin-right: 8px;
+        }
+
+        span {
+          font-size: 14px;
+          color: #555;
+
+          &.value {
+            font-weight: 600;
+            color: #333;
+          }
+        }
+      }
+
+      .calories {
+        background-color: #ffe0b2;
+      }
+
+      .protein {
+        background-color: #c8e6c9;
+      }
+
+      .carbs {
+        background-color: #fff9c4;
+      }
+
+      .fat {
+        background-color: #b3e5fc;
+      }
+    }
+  }
+
+  ion-button {
+    --color: #ff5722;
+    --padding-start: 8px;
+    --padding-end: 8px;
+  }
+}
+
+.search-results {
+  background: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-top: 16px;
+  padding: 12px;
+
+  .search-result-item {
+    padding: 16px;
+    border-bottom: 1px solid #eee;
+    transition: background-color 0.3s ease;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 0 0 8px;
+      color: #ff5722;
+    }
+
+    .nutrients {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+
+      .nutrient {
+        background: #f9f9f9;
+        border-radius: 4px;
+        padding: 4px 8px;
+        font-size: 14px;
+        color: #555;
+
+        &:before {
+          content: "";
+          display: inline-block;
+          width: 8px;
+          height: 8px;
+          margin-right: 4px;
+          border-radius: 50%;
+        }
+
+        &.calories:before {
+          background: #ff5722;
+        }
+
+        &.protein:before {
+          background: #4caf50;
+        }
+
+        &.carbs:before {
+          background: #ffc107;
+        }
+
+        &.fat:before {
+          background: #03a9f4;
+        }
+      }
+    }
+
+    &:hover {
+      background-color: #f0f0f5;
+      cursor: pointer;
+    }
+  }
+}
+
+.search-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin: 16px;
+
+  h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 16px;
+  }
+}
+
+.meals-list-card {
+  background: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  margin: 16px;
+  padding: 20px;
+
+  h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 20px;
+  }
+
+  ion-list {
+    background: transparent;
+  }
+
+  ion-item-sliding {
+    --background: transparent;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ffcc80;
+  }
+
+  ion-item {
+    --background: transparent;
+    --padding-start: 0;
+    --inner-padding-end: 0;
+  }
+
+  .meal-item {
+    width: 100%;
+    padding: 15px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; // Change this from center to flex-start
+
+    h3.food-name {
+      font-size: 18px;
+      font-weight: 600;
+      color: #ff6347;
+      margin-bottom: 12px;
+      text-align: left; // Change this from center to left
+      align-self: flex-start; // Add this line
+      width: 100%; // Add this line to ensure full width
+    }
+
+    .nutrient-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      width: 100%;
+    }
+
+    .nutrient {
+      display: flex;
+      align-items: center;
+      padding: 8px 12px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 500;
+
+      ion-icon {
+        margin-right: 6px;
+        font-size: 16px;
+      }
+    }
+
+    .calories {
+      background-color: #ffe0b2;
+      color: #e65100;
+    }
+
+    .protein {
+      background-color: #c8e6c9;
+      color: #1b5e20;
+    }
+
+    .carbs {
+      background-color: #fff9c4;
+      color: #f57f17;
+    }
+
+    .fat {
+      background-color: #b3e5fc;
+      color: #01579b;
+    }
+  }
+}
+
+.no-meals {
+  text-align: center;
+  color: #999;
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+.error {
+  text-align: center;
+  color: red;
+  font-size: 16px;
+  margin-top: 20px;
+}

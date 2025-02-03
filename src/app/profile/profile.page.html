@@ -1,0 +1,72 @@
+<ion-content class="profile-content">
+  <div class="header">
+    <h1>Profile</h1>
+    <ion-button fill="clear" (click)="confirmLogout()" class="logout-button">
+      <ion-icon name="log-out-outline" slot="icon-only"></ion-icon>
+    </ion-button>
+  </div>
+  
+  <div class="profile-card">
+    <div class="profile-picture-container">
+      <img [src]="profilePicture || 'assets/placeholder.jpg'" alt="Profile Picture" class="profile-picture">
+      <ion-button fill="clear" (click)="takePicture()" class="camera-button">
+        <ion-icon name="camera" slot="icon-only"></ion-icon>
+      </ion-button>
+    </div>
+    
+    <h2 class="user-name">{{profile.fullname}}</h2>
+
+    <form id="profile-form" (submit)="updateProfile($event)">
+      <ion-item class="custom-item">
+        <ion-icon name="person-outline" slot="start"></ion-icon>
+        <ion-label position="floating">Full Name</ion-label>
+        <ion-input type="text" id="fullname" name="fullname" required [(ngModel)]="profile.fullname" (ionChange)="onProfileChange()"></ion-input>
+      </ion-item>
+      <ion-item class="custom-item">
+        <ion-icon name="calendar-outline" slot="start"></ion-icon>
+        <ion-label position="floating">Age</ion-label>
+        <ion-input type="number" id="age" name="age" required [(ngModel)]="profile.age" (ionChange)="onProfileChange()"></ion-input>
+      </ion-item>
+      <ion-item class="custom-item">
+        <ion-icon name="scale-outline" slot="start"></ion-icon>
+        <ion-label position="floating">Weight (kg)</ion-label>
+        <ion-input type="number" id="weight" name="weight" required [(ngModel)]="profile.weight" (ionChange)="onProfileChange()"></ion-input>
+      </ion-item>
+      <ion-item class="custom-item">
+        <ion-icon name="resize-outline" slot="start"></ion-icon>
+        <ion-label position="floating">Height (cm)</ion-label>
+        <ion-input type="number" id="height" name="height" required [(ngModel)]="profile.height" (ionChange)="onProfileChange()"></ion-input>
+      </ion-item>
+      <ion-item class="custom-item">
+        <ion-icon name="male-female-outline" slot="start"></ion-icon>
+        <ion-label position="floating">Gender</ion-label>
+        <ion-select id="gender" name="gender" [(ngModel)]="profile.gender" (ionChange)="onProfileChange()" interface="popover" placeholder="Select gender">
+          <ion-select-option value="male">Male</ion-select-option>
+          <ion-select-option value="female">Female</ion-select-option>
+          <ion-select-option value="other">Other</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item class="custom-item">
+        <ion-icon name="fitness-outline" slot="start"></ion-icon>
+        <ion-label position="floating">Activity Level</ion-label>
+        <ion-select id="activity_level" name="activity_level" [(ngModel)]="profile.activity_level" (ionChange)="onProfileChange()" interface="popover" placeholder="Select activity level">
+          <ion-select-option value="Sedentary">Sedentary</ion-select-option>
+          <ion-select-option value="Lightly active">Lightly active</ion-select-option>
+          <ion-select-option value="Moderately active">Moderately active</ion-select-option>
+          <ion-select-option value="Very active">Very active</ion-select-option>
+          <ion-select-option value="Super active">Super active</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <div class="calorie-goal-item">
+        <div class="calorie-goal-label">
+          <ion-icon name="flame-outline"></ion-icon>
+          Daily Calorie Goal
+        </div>
+        <div class="calorie-goal-value">{{ profile.daily_calorie_goal }}</div>
+      </div>
+      <ion-footer>
+        <ion-button type="submit" expand="block" class="update-button">UPDATE PROFILE</ion-button>
+      </ion-footer>
+    </form>
+  </div>
+</ion-content>

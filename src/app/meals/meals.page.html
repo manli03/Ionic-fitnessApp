@@ -1,0 +1,115 @@
+<!-- src/app/meals/meals.page.html -->
+<ion-content>
+  <div class="header">
+    <h1 class="page-title">Meals & Nutrition</h1>
+  </div>
+
+  <div class="card search-card">
+    <h2>Search Food</h2>
+    <div class="search-input">
+      <ion-icon name="search-outline"></ion-icon>
+      <ion-input placeholder="Enter food name" [(ngModel)]="searchQuery"></ion-input>
+    </div>
+    <ion-button expand="block" (click)="searchFood()">Search</ion-button>
+    <div *ngIf="searchResults.length > 0" class="search-results">
+      <div *ngFor="let food of searchResults" class="search-result-item" (click)="selectFood(food)">
+        <h3>{{ food.food_name }}</h3>
+        <div class="nutrients">
+          <div class="nutrient calories">
+            <ion-icon name="flame-outline"></ion-icon>
+            <span class="value">{{ food.nf_calories }}</span>
+            <span>kcal</span>
+          </div>
+          <div class="nutrient protein">
+            <ion-icon name="nutrition-outline"></ion-icon>
+            <span class="value">{{ food.nf_protein }}</span>
+            <span>g Protein</span>
+          </div>
+          <div class="nutrient carbs">
+            <ion-icon name="leaf-outline"></ion-icon>
+            <span class="value">{{ food.nf_total_carbohydrate }}</span>
+            <span>g Carbs</span>
+          </div>
+          <div class="nutrient fat">
+            <ion-icon name="water-outline"></ion-icon>
+            <span class="value">{{ food.nf_total_fat }}</span>
+            <span>g Fat</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card log-meal-card">
+    <h2>Log Meal</h2>
+    <form (ngSubmit)="logMeal()">
+      <div *ngIf="newMeal.name">
+        <label>Food Name</label>
+      </div>
+      <ion-input placeholder="Food Name" [(ngModel)]="newMeal.name" name="name" required></ion-input>
+      
+      <div *ngIf="newMeal.calories">
+        <label>Calories</label>
+      </div>
+      <ion-input type="number" placeholder="Calories" [(ngModel)]="newMeal.calories" name="calories" required></ion-input>
+      
+      <div *ngIf="newMeal.protein">
+        <label>Protein (g)</label>
+      </div>
+      <ion-input type="number" placeholder="Protein (g)" [(ngModel)]="newMeal.protein" name="protein"></ion-input>
+      
+      <div *ngIf="newMeal.carbs">
+        <label>Carbs (g)</label>
+      </div>
+      <ion-input type="number" placeholder="Carbs (g)" [(ngModel)]="newMeal.carbs" name="carbs"></ion-input>
+      
+      <div *ngIf="newMeal.fat">
+        <label>Fat (g)</label>
+      </div>
+      <ion-input type="number" placeholder="Fat (g)" [(ngModel)]="newMeal.fat" name="fat"></ion-input>
+      
+      <ion-button expand="block" type="submit">Log Meal</ion-button>
+    </form>
+  </div>
+
+  <div class="card meals-list-card">
+    <h2>Today's Meals</h2>
+    <div *ngIf="todaysMeals.length === 0" class="no-meals">No meals for today.</div> <!-- Show no meals message -->
+    <ion-list>
+      <ion-item-sliding *ngFor="let meal of todaysMeals">
+        <ion-item>
+          <div class="meal-item">
+            <h3 class="food-name">{{ meal.name }}</h3>
+            <div class="nutrient-grid">
+              <div class="nutrient calories">
+                <ion-icon name="flame-outline"></ion-icon>
+                <span>{{ meal.calories }} kcal</span>
+              </div>
+              <div class="nutrient protein">
+                <ion-icon name="nutrition-outline"></ion-icon>
+                <span>{{ meal.protein }}g Protein</span>
+              </div>
+              <div class="nutrient carbs">
+                <ion-icon name="leaf-outline"></ion-icon>
+                <span>{{ meal.carbs }}g Carbs</span>
+              </div>
+              <div class="nutrient fat">
+                <ion-icon name="water-outline"></ion-icon>
+                <span>{{ meal.fat }}g Fat</span>
+              </div>
+            </div>
+          </div>
+        </ion-item>
+        <ion-item-options side="end">
+          <ion-item-option color="danger" (click)="presentAlertConfirm(meal.id)">
+            <ion-icon name="trash-outline"></ion-icon>
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+  </div>
+</ion-content>
+
+<ion-toast id="toast" duration="2000"></ion-toast> <!-- Toast for messages -->
+
+<ion-alert id="alert"></ion-alert> <!-- Alert for confirmations -->
